@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		524971E723E7E52C001F3C32 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524971E623E7E52C001F3C32 /* SettingsVC.swift */; };
 		CD1518B5234F989400C8A77D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1518B4234F989400C8A77D /* AppDelegate.swift */; };
 		CD1518B7234F989400C8A77D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1518B6234F989400C8A77D /* SceneDelegate.swift */; };
 		CD1518B9234F989400C8A77D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1518B8234F989400C8A77D /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		524971E623E7E52C001F3C32 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		CD1518B1234F989400C8A77D /* Animations-Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Animations-Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1518B4234F989400C8A77D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD1518B6234F989400C8A77D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				CD1518B4234F989400C8A77D /* AppDelegate.swift */,
 				CD1518B6234F989400C8A77D /* SceneDelegate.swift */,
 				CD1518B8234F989400C8A77D /* ViewController.swift */,
+				524971E623E7E52C001F3C32 /* SettingsVC.swift */,
 				CD1518BA234F989400C8A77D /* Main.storyboard */,
 				CD1518BD234F989900C8A77D /* Assets.xcassets */,
 				CD1518BF234F989900C8A77D /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1518B9234F989400C8A77D /* ViewController.swift in Sources */,
+				524971E723E7E52C001F3C32 /* SettingsVC.swift in Sources */,
 				CD1518B5234F989400C8A77D /* AppDelegate.swift in Sources */,
 				CD1518B7234F989400C8A77D /* SceneDelegate.swift in Sources */,
 			);

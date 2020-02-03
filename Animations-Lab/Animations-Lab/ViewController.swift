@@ -149,8 +149,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         addSubviews()
+        configureNavBar()
         configureConstraints()
+    }
+    
+    private func configureNavBar() {
+        navigationItem.title = "Animation"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(showSettings(_:)))
+    }
+    
+    @objc
+    private func showSettings(_ sender: UIBarButtonItem) {
+        // segue to setting VC
+        let settingVC = SettingsVC()
+        navigationController?.pushViewController(settingVC, animated: true)
     }
     
     @IBAction func animateSquareUp(sender: UIButton) {
@@ -175,7 +189,9 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: timeStepper.value) { [unowned self] in
             self.view.layoutIfNeeded()
         }
-    }
+//        UIView.animate(withDuration: <#T##TimeInterval#>, delay: <#T##TimeInterval#>, options: <#T##UIView.AnimationOptions#>, animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+//    }
+}
     
     @IBAction func animateRight(sender: UIButton) {
         let oldOffset = blueSquareCenterXConstraint.constant
