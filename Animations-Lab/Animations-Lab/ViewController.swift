@@ -16,8 +16,6 @@ class ViewController: UIViewController {
         return view
     }()
     
-    var capturedAnimation = ""
-    
     lazy var buttonStackView: UIStackView = {
         let buttonStack = UIStackView()
         buttonStack.axis = .horizontal
@@ -72,7 +70,7 @@ class ViewController: UIViewController {
         stepper.addTarget(self, action: #selector(timeStepper(sender:)), for: .touchUpInside)
         return stepper
     }()
-
+    
     lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.text = "Current duration: \(timeStepper.value)"
@@ -83,7 +81,7 @@ class ViewController: UIViewController {
         let stepper = UIStepper()
         stepper.value = 100.0
         stepper.maximumValue = 300.0
-        stepper.minimumValue = 0.0
+        stepper.minimumValue = 10.0
         stepper.stepValue = 10.0
         stepper.addTarget(self, action: #selector(offsetStepper(sender:)), for: .touchUpInside)
         return stepper
@@ -149,6 +147,9 @@ class ViewController: UIViewController {
         blueSquare.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     }()
     
+    
+    private var animationOption: UIView.AnimationOptions = UIView.AnimationOptions.autoreverse
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -173,35 +174,34 @@ class ViewController: UIViewController {
     @IBAction func animateSquareUp(sender: UIButton) {
         let oldOffset = blueSquareCenterYConstraint.constant
         blueSquareCenterYConstraint.constant = oldOffset - CGFloat(distanceStepper.value)
-        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
+        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: {
             self.view.layoutIfNeeded()
-        }
+            }, completion: nil)
     }
     
     @IBAction func animateSquareDown(sender: UIButton) {
         let oldOffet = blueSquareCenterYConstraint.constant
         blueSquareCenterYConstraint.constant = oldOffet + CGFloat(distanceStepper.value)
-        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
+        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: {
             self.view.layoutIfNeeded()
-        }
+            }, completion: nil)
     }
     
     @IBAction func animateLeft(sender: UIButton) {
         let oldOffset = blueSquareCenterXConstraint.constant
         blueSquareCenterXConstraint.constant = oldOffset - CGFloat(distanceStepper.value)
-        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
+        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: {
             self.view.layoutIfNeeded()
-        }
-//        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [], animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
-//    }
-}
+            }, completion: nil)
+    }
+    
     
     @IBAction func animateRight(sender: UIButton) {
         let oldOffset = blueSquareCenterXConstraint.constant
         blueSquareCenterXConstraint.constant = oldOffset + CGFloat(distanceStepper.value)
-        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
+        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: { 
             self.view.layoutIfNeeded()
-        }
+            }, completion: nil)
     }
     
     @IBAction func timeStepper(sender: UIStepper) {
@@ -288,9 +288,8 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: AnimationDelegate {
-    func animation(string: String) {
-        self.capturedAnimation = string
+    func animation(int: UInt) {
+        self.animationOption = UIView.AnimationOptions(rawValue: int)
+        print(int)
     }
 }
-
-

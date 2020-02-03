@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AnimationDelegate: AnyObject {
-    func animation(string: String)
+    func animation(int: UInt)
 }
 
 class SettingsVC: UIViewController {
@@ -56,7 +56,7 @@ extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let animationChoice = animateOptions[row]
-        print(animationChoice)
-        delegate?.animation(string: animationChoice)
+        delegate?.animation(int: UInt(row))
+        print(row)
     }
 }
