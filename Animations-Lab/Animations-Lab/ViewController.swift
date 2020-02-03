@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     
     lazy var distanceStepper: UIStepper = {
         let stepper = UIStepper()
-        stepper.value = 150.0
+        stepper.value = 100.0
         stepper.maximumValue = 300.0
         stepper.minimumValue = 0.0
         stepper.stepValue = 10.0
@@ -159,32 +159,32 @@ class ViewController: UIViewController {
     
     @IBAction func animateSquareUp(sender: UIButton) {
         let oldOffset = blueSquareCenterYConstraint.constant
-        blueSquareCenterYConstraint.constant = oldOffset - 150
-        UIView.animate(withDuration: 2) { [unowned self] in
+        blueSquareCenterYConstraint.constant = oldOffset - CGFloat(distanceStepper.value)
+        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
             self.view.layoutIfNeeded()
         }
     }
     
     @IBAction func animateSquareDown(sender: UIButton) {
         let oldOffet = blueSquareCenterYConstraint.constant
-        blueSquareCenterYConstraint.constant = oldOffet + 150
-        UIView.animate(withDuration: 2) { [unowned self] in
+        blueSquareCenterYConstraint.constant = oldOffet + CGFloat(distanceStepper.value)
+        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
             self.view.layoutIfNeeded()
         }
     }
     
     @IBAction func animateLeft(sender: UIButton) {
         let oldOffset = blueSquareCenterXConstraint.constant
-        blueSquareCenterXConstraint.constant = oldOffset - 100
-        UIView.animate(withDuration: 2) { [unowned self] in
+        blueSquareCenterXConstraint.constant = oldOffset - CGFloat(distanceStepper.value)
+        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
             self.view.layoutIfNeeded()
         }
     }
     
     @IBAction func animateRight(sender: UIButton) {
         let oldOffset = blueSquareCenterXConstraint.constant
-        blueSquareCenterXConstraint.constant = oldOffset + 100
-        UIView.animate(withDuration: 2) { [unowned self] in
+        blueSquareCenterXConstraint.constant = oldOffset + CGFloat(distanceStepper.value)
+        UIView.animate(withDuration: timeStepper.value) { [unowned self] in
             self.view.layoutIfNeeded()
         }
     }
