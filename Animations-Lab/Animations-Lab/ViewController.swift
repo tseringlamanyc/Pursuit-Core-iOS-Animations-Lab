@@ -61,6 +61,42 @@ class ViewController: UIViewController {
         return button
     }()
     
+    lazy var timeStepper: UIStepper = {
+         let stepper = UIStepper()
+         stepper.value = 2.0
+         stepper.maximumValue = 10.0
+         stepper.minimumValue = 0.0
+         stepper.stepValue = 1.0
+         return stepper
+     }()
+    
+    lazy var distanceStepper: UIStepper = {
+         let stepper = UIStepper()
+         stepper.value = 150.0
+         stepper.maximumValue = 300.0
+         stepper.minimumValue = 0.0
+         stepper.stepValue = 10.0
+         return stepper
+     }()
+    
+    private func timeStepperConstraints() {
+        view.addSubview(timeStepper)
+        timeStepper.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timeStepper.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            timeStepper.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+        ])
+    }
+    
+    private func distantStepperConstraints() {
+        view.addSubview(distanceStepper)
+        distanceStepper.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            distanceStepper.topAnchor.constraint(equalTo: timeStepper.bottomAnchor, constant: 8),
+            distanceStepper.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+        ])
+    }
+    
     lazy var blueSquareHeightConstaint: NSLayoutConstraint = {
         blueSquare.heightAnchor.constraint(equalToConstant: 200)
     }()
@@ -135,6 +171,8 @@ class ViewController: UIViewController {
         constrainButtonStackView()
         constrainLeftButton()
         constrainRightButton()
+        timeStepperConstraints()
+        distantStepperConstraints()
     }
     
     private func constrainUpButton() {
