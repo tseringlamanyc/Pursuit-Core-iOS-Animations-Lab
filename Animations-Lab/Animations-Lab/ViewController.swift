@@ -16,6 +16,8 @@ class ViewController: UIViewController {
         return view
     }()
     
+    var capturedAnimation = ""
+    
     lazy var buttonStackView: UIStackView = {
         let buttonStack = UIStackView()
         buttonStack.axis = .horizontal
@@ -164,6 +166,7 @@ class ViewController: UIViewController {
     private func showSettings(_ sender: UIBarButtonItem) {
         // segue to setting VC
         let settingVC = SettingsVC()
+        settingVC.delegate = self
         navigationController?.pushViewController(settingVC, animated: true)
     }
     
@@ -281,6 +284,12 @@ class ViewController: UIViewController {
             buttonStackView.heightAnchor.constraint(equalToConstant: 50),
             buttonStackView.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
+    }
+}
+
+extension ViewController: AnimationDelegate {
+    func animation(string: String) {
+        self.capturedAnimation = string
     }
 }
 

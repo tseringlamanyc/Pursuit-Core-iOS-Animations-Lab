@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AnimationDelegate: AnyObject {
+    func animation(string: String)
+}
+
 class SettingsVC: UIViewController {
     
     lazy var pickerView: UIPickerView = {
@@ -16,6 +20,8 @@ class SettingsVC: UIViewController {
     }()
     
     private var animateOptions = ["curveEaseIn", "curveEaseOut", "Repeat", "curveLinear", "transitionFlipFromLeft"]
+    
+    weak var delegate: AnimationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,5 +52,11 @@ extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return animateOptions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let animationChoice = animateOptions[row]
+        print(animationChoice)
+        delegate?.animation(string: animationChoice)
     }
 }
