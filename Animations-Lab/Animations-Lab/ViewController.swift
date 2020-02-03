@@ -67,15 +67,10 @@ class ViewController: UIViewController {
         stepper.maximumValue = 10.0
         stepper.minimumValue = 0.0
         stepper.stepValue = 1.0
+        stepper.addTarget(self, action: #selector(timeStepper(sender:)), for: .touchUpInside)
         return stepper
     }()
-    
-    //    public var labelTime: String = "" {
-    //        didSet {
-    //            timeLabel.text = "Current duration: \(timeStepper.value)"
-    //        }
-    //    }
-    
+
     lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.text = "Current duration: \(timeStepper.value)"
@@ -88,6 +83,7 @@ class ViewController: UIViewController {
         stepper.maximumValue = 300.0
         stepper.minimumValue = 0.0
         stepper.stepValue = 10.0
+        stepper.addTarget(self, action: #selector(offsetStepper(sender:)), for: .touchUpInside)
         return stepper
     }()
     
@@ -187,6 +183,14 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: timeStepper.value) { [unowned self] in
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @IBAction func timeStepper(sender: UIStepper) {
+        timeLabel.text = "Current duration: \(sender.value)"
+    }
+    
+    @IBAction func offsetStepper(sender: UIStepper) {
+        distanceLabel.text = "Current distance: \(sender.value)"
     }
     
     private func addSubviews() {
