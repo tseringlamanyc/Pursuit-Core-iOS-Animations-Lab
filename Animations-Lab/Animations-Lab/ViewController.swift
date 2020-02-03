@@ -192,7 +192,7 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: timeStepper.value) { [unowned self] in
             self.view.layoutIfNeeded()
         }
-//        UIView.animate(withDuration: <#T##TimeInterval#>, delay: <#T##TimeInterval#>, options: <#T##UIView.AnimationOptions#>, animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+//        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [], animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
 //    }
 }
     
