@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     
     lazy var leftButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Move the box left", for: .normal)
+        button.setTitle("Move box left", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .cyan
         button.addTarget(self, action: #selector(animateLeft(sender:)), for: .touchUpInside)
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     
     lazy var rightButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Move the box right", for: .normal)
+        button.setTitle("Move box right", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .cyan
         button.addTarget(self, action: #selector(animateRight(sender:)), for: .touchUpInside)
@@ -62,22 +62,40 @@ class ViewController: UIViewController {
     }()
     
     lazy var timeStepper: UIStepper = {
-         let stepper = UIStepper()
-         stepper.value = 2.0
-         stepper.maximumValue = 10.0
-         stepper.minimumValue = 0.0
-         stepper.stepValue = 1.0
-         return stepper
-     }()
+        let stepper = UIStepper()
+        stepper.value = 2.0
+        stepper.maximumValue = 10.0
+        stepper.minimumValue = 0.0
+        stepper.stepValue = 1.0
+        return stepper
+    }()
+    
+    //    public var labelTime: String = "" {
+    //        didSet {
+    //            timeLabel.text = "Current duration: \(timeStepper.value)"
+    //        }
+    //    }
+    
+    lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Current duration: \(timeStepper.value)"
+        return label
+    }()
     
     lazy var distanceStepper: UIStepper = {
-         let stepper = UIStepper()
-         stepper.value = 150.0
-         stepper.maximumValue = 300.0
-         stepper.minimumValue = 0.0
-         stepper.stepValue = 10.0
-         return stepper
-     }()
+        let stepper = UIStepper()
+        stepper.value = 150.0
+        stepper.maximumValue = 300.0
+        stepper.minimumValue = 0.0
+        stepper.stepValue = 10.0
+        return stepper
+    }()
+    
+    lazy var distanceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Current distance: \(distanceStepper.value)"
+        return label
+    }()
     
     private func timeStepperConstraints() {
         view.addSubview(timeStepper)
@@ -94,6 +112,26 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             distanceStepper.topAnchor.constraint(equalTo: timeStepper.bottomAnchor, constant: 8),
             distanceStepper.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+        ])
+    }
+    
+    private func timeLabelConstraints() {
+        view.addSubview(timeLabel)
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            timeLabel.leadingAnchor.constraint(equalTo: timeStepper.trailingAnchor, constant: 20),
+            timeLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8)
+        ])
+    }
+    
+    private func distanceLabelConstraints() {
+        view.addSubview(distanceLabel)
+        distanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            distanceLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 20),
+            distanceLabel.leadingAnchor.constraint(equalTo: distanceStepper.trailingAnchor, constant: 20),
+            distanceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8)
         ])
     }
     
@@ -173,6 +211,8 @@ class ViewController: UIViewController {
         constrainRightButton()
         timeStepperConstraints()
         distantStepperConstraints()
+        timeLabelConstraints()
+        distanceLabelConstraints()
     }
     
     private func constrainUpButton() {
