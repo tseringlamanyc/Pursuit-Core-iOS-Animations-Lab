@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private var animationOption: UIView.AnimationOptions = UIView.AnimationOptions.autoreverse
+    
     lazy var blueSquare: UIView = {
         let view = UIView()
         view.backgroundColor = .blue
@@ -147,9 +149,6 @@ class ViewController: UIViewController {
         blueSquare.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     }()
     
-    
-    private var animationOption: UIView.AnimationOptions = UIView.AnimationOptions.autoreverse
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -172,11 +171,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func animateSquareUp(sender: UIButton) {
+        print(animationOption)
         let oldOffset = blueSquareCenterYConstraint.constant
         blueSquareCenterYConstraint.constant = oldOffset - CGFloat(distanceStepper.value)
         UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: {
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     @IBAction func animateSquareDown(sender: UIButton) {
@@ -184,7 +184,7 @@ class ViewController: UIViewController {
         blueSquareCenterYConstraint.constant = oldOffet + CGFloat(distanceStepper.value)
         UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: {
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     @IBAction func animateLeft(sender: UIButton) {
@@ -192,16 +192,16 @@ class ViewController: UIViewController {
         blueSquareCenterXConstraint.constant = oldOffset - CGFloat(distanceStepper.value)
         UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: {
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     
     @IBAction func animateRight(sender: UIButton) {
         let oldOffset = blueSquareCenterXConstraint.constant
         blueSquareCenterXConstraint.constant = oldOffset + CGFloat(distanceStepper.value)
-        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: { 
+        UIView.animate(withDuration: timeStepper.value, delay: 0.0, options: [animationOption], animations: {
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     @IBAction func timeStepper(sender: UIStepper) {
@@ -289,7 +289,7 @@ class ViewController: UIViewController {
 
 extension ViewController: AnimationDelegate {
     func animation(int: UInt) {
-        self.animationOption = UIView.AnimationOptions(rawValue: int)
-        print(int)
+        animationOption = UIView.AnimationOptions(rawValue: int)
+
     }
 }

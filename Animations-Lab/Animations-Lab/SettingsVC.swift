@@ -12,7 +12,17 @@ protocol AnimationDelegate: AnyObject {
     func animation(int: UInt)
 }
 
+enum AnimationChoice: Int {
+    case curveEaseIn = 65536
+    case curveEaseOut = 0
+    case Repeat = 8
+    case curveLinear = 196608
+    case transitionFlipFromLeft = 1048576
+}
+
 class SettingsVC: UIViewController {
+    
+    var defaultAnimation = AnimationChoice.curveEaseIn
     
     lazy var pickerView: UIPickerView = {
         let pickerview = UIPickerView()
@@ -55,8 +65,27 @@ extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let animationChoice = animateOptions[row]
-        delegate?.animation(int: UInt(row))
-        print(row)
+//        let animationChoice = animateOptions[row]
+//        delegate?.animation(int: UInt(row))
+//        print(row)
+        switch row {
+        case 0:
+            defaultAnimation = .curveEaseIn
+            delegate?.animation(int: UInt(defaultAnimation.rawValue))
+        case 1:
+            defaultAnimation = .curveEaseOut
+            delegate?.animation(int: UInt(defaultAnimation.rawValue))
+        case 2:
+            defaultAnimation = .Repeat
+            delegate?.animation(int: UInt(defaultAnimation.rawValue))
+        case 3:
+            defaultAnimation = .curveLinear
+            delegate?.animation(int: UInt(defaultAnimation.rawValue))
+        case 4:
+            defaultAnimation = .transitionFlipFromLeft
+            delegate?.animation(int: UInt(defaultAnimation.rawValue))
+        default:
+            print("Sup")
+        }
     }
 }
